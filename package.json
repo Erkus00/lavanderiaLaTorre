@@ -12,6 +12,12 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^6.0.4"
+    "@fontsource/oswald": "^5.2.8",
+    "@fontsource/stardos-stencil": "^5.2.7",
+    "@tailwindcss/vite": "^4.2.1",
+    "astro": "^6.0.4",
+    "daisyui": "^5.5.19",
+    "tailwind-animations": "^1.0.1",
+    "tailwindcss": "^4.2.1"
   }
 }
