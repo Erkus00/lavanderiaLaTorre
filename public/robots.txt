@@ -1,0 +1,9 @@
+# https://lavanderialatorre.com
+ 
+User-agent: *
+Allow: /
+ 
+Sitemap: https://lavanderialatorre.com/sitemap-index.xml
+ 
+Disallow: /api/
+Disallow: /_astro/

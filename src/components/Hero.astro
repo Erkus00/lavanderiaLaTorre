@@ -1,0 +1,52 @@
+---
+import {business} from "../data/business";
+
+const cta = {
+    primary: {text: "Pedir presupuesto", href: "#contacto"},
+    secondary: {text: "Ver servicios", href: "#servicios"}
+};
+---
+
+<section class="relative h-screen min-h-[600px] flex items-center overflow-hidden">
+    <video
+            autoplay
+            muted
+            loop
+            playsinline
+            aria-hidden="true"
+            class="absolute inset-0 w-full h-full object-cover"
+    >
+        <source src="/videos/hero-video.mp4" type="video/mp4"/>
+    </video>
+
+    <div class="absolute inset-0 bg-latorre-text/60"></div>
+
+    <div class="container mx-auto px-4 relative z-10 text-center">
+        <h1 class="mb-6">
+            <span class="block font-stencil text-4xl md:text-5xl lg:text-6xl text-latorre-base mb-2">
+                Lavandería y Tintorería
+            </span>
+            <span class="block font-stencil text-3xl md:text-4xl lg:text-5xl text-latorre-primary">
+                La Torre
+            </span>
+        </h1>
+        <p class="text-latorre-base/90 text-lg md:text-xl max-w-2xl mx-auto mb-8">
+            {business.description}
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+                    href={cta.primary.href}
+                    class="btn bg-latorre-primary text-latorre-base border-none hover:bg-latorre-primary/90 btn-lg"
+            >
+                {cta.primary.text}
+            </a>
+            <a
+                    href={cta.secondary.href}
+                    class="btn btn-outline border-latorre-base text-latorre-base hover:bg-latorre-base hover:text-latorre-text btn-lg"
+            >
+                {cta.secondary.text}
+            </a>
+        </div>
+    </div>
+</section>

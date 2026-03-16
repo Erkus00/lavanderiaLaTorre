@@ -12,11 +12,13 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.1",
     "@fontsource/oswald": "^5.2.8",
     "@fontsource/stardos-stencil": "^5.2.7",
     "@tailwindcss/vite": "^4.2.1",
     "astro": "^6.0.4",
     "daisyui": "^5.5.19",
+    "maplibre-gl": "^5.20.1",
     "tailwind-animations": "^1.0.1",
     "tailwindcss": "^4.2.1"
   }

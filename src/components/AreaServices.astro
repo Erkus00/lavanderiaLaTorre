@@ -1,0 +1,104 @@
+---
+import { business } from "../data/business";
+---
+
+<section id="zonas" class="bg-base-100 py-16 px-4">
+    <div class="max-w-6xl mx-auto">
+
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl mb-4">Zonas de Servicio</h2>
+            <p class="text-base-content/60 max-w-2xl mx-auto">
+                Recogemos y entregamos en toda la Costa del Sol
+            </p>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-8">
+
+            <!-- Mapa -->
+            <div class="lg:col-span-2">
+                <div id="map" class="w-full h-96 rounded-2xl shadow-lg"></div>
+            </div>
+
+            <!-- Lista de zonas -->
+            <div class="space-y-3">
+                <h3 class="text-xl mb-4">Municipios</h3>
+                {business.areaServed.map((zona) => (
+                        <div class="flex items-center gap-3 p-3 bg-base-200 rounded-lg">
+                            <div class="w-3 h-3 rounded-full bg-primary"></div>
+                            <span>{zona}</span>
+                        </div>
+                ))}
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<link href="https://unpkg.com/maplibre-gl@4.1.2/dist/maplibre-gl.css" rel="stylesheet" />
+
+<script>
+    import maplibregl, {GeoJSONSourceSpecification} from 'maplibre-gl';
+
+    // Centro: Málaga / Costa del Sol
+    const map = new maplibregl.Map({
+        container: 'map',
+        style: 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json', // Estilo gratuito
+        center: [-4.5, 36.65], // Lng, Lat
+        zoom: 10
+    });
+
+    // Polígono aproximado Costa del Sol
+    const zonaServicio = {
+        type: 'Feature',
+        geometry: {
+            type: 'Polygon',
+            coordinates: [[
+                [-4.95, 36.50],  // Estepona
+                [-4.70, 36.48],  // Marbella
+                [-4.50, 36.52],  // Fuengirola
+                [-4.42, 36.60],  // Torremolinos
+                [-4.35, 36.72],  // Málaga
+                [-4.30, 36.75],  // Málaga este
+                [-4.42, 36.78],  // Norte
+                [-4.60, 36.75],
+                [-4.80, 36.65],
+                [-4.95, 36.55],
+                [-4.95, 36.50],  // Cierra el polígono
+            ]]
+        }
+    };
+
+    map.on('load', () => {
+        // Añadir área sombreada
+        map.addSource('zona', {
+            type: 'geojson',
+            data: zonaServicio
+        } as GeoJSONSourceSpecification);
+
+        map.addLayer({
+            id: 'zona-fill',
+            type: 'fill',
+            source: 'zona',
+            paint: {
+                'fill-color': '#0780FE',
+                'fill-opacity': 0.25
+            }
+        });
+
+        map.addLayer({
+            id: 'zona-border',
+            type: 'line',
+            source: 'zona',
+            paint: {
+                'line-color': '#0780FE',
+                'line-width': 2
+            }
+        });
+
+        // Marker central
+        new maplibregl.Marker({ color: '#D4AF37' })
+            .setLngLat([-4.42, 36.72]) // Posición de La Torre
+            .setPopup(new maplibregl.Popup().setHTML('<strong>Lavandería La Torre</strong>'))
+            .addTo(map);
+    });
+</script>
