@@ -5,6 +5,7 @@
 @import '@fontsource/oswald/700.css';
 
 @import 'tailwindcss';
+@import "tailwind-animations";
 
 @plugin 'daisyui';
 
