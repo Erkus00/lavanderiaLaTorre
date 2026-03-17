@@ -2,7 +2,16 @@ export const business = {
     name: "Lavandería La Torre",
     alternateName: "La Torre Lavandería y Tintorería",
     slogan: "Servicio profesional a domicilio",
-    description: "Servicio profesional de lavandería y tintorería a domicilio. Rápido, eficiente y de alta calidad para empresas y particulares en Málaga y alrededores.",
+    description: "Servicio profesional de lavandería industrial y tintorería a domicilio",
+    extendedDescription: [
+        "En Lavandería La Torre ofrecemos un servicio completo de lavandería y tintorería a domicilio en Málaga y alrededores.",
+        "Trabajamos con apartamentos turísticos, hoteles, restaurantes, aviación privada y particulares que buscan calidad y rapidez. Nuestra lavandería industrial está preparada para grandes volúmenes con máxima eficiencia.",
+        "En tintorería, cuidamos tus prendas más delicadas: trajes, abrigos, pieles, edredones, cortinas y alfombras.",
+        "Si prefieres no invertir en textiles, nuestro servicio de renting te permite alquilar ropa de cama, toallas y mantelería.",
+        "Para urgencias, contamos con servicio express 24/7 con entrega en 3-4 horas, todos los días del año.",
+        "Recogemos y entregamos en toda la zona: Pedregalejo, Fuengirola, Alhaurín, Cártama, Churriana, Torremolinos, Málaga Centro, Teatinos y puerto.",
+        "Confía en nosotros para el cuidado de tus textiles con la comodidad de no moverte de casa."
+    ],
 
     url: "https://lavanderialatorre.com",
     logo: "/images/logo-latorre.png",
