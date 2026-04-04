@@ -1,24 +1,19 @@
 ---
 import {business} from "../data/business";
+import Title from "./childComponents/Title.astro";
 ---
 
 <section id="zonas" class="py-10 bg-latorre-background">
     <div class="container mx-auto px-4">
-        <div class="text-center mb-4 w-full flex">
-            <h2
-                    id="contacto-titulo"
-                    class="font-stencil text-3xl md:text-4xl lg:text-5xl text-latorre-text mb-4"
-            >
-                Zonas de Servicio
-            </h2>
-        </div>
+
+        <Title text=" Zonas de Servicio" id="cobertura-titulo"/>
 
         <div class="grid lg:grid-cols-3 gap-8">
-            <div class="space-y-3">
+            <div class="space-y-3 h-full flex items-center">
                 <div class="grid grid-cols-2 gap-3">
                     {business.areaServed.map((zona) => (
-                            <div class="flex items-center gap-3 p-3 bg-base-200 rounded-lg">
-                                <div class="w-3 h-3 rounded-full bg-primary"></div>
+                            <div class="flex items-center gap-3 p-3 rounded-lg">
+                                <div class="w-3 h-3 rounded-full bg-gradient-to-br from-primary to-primary/60"></div>
                                 <span>{zona}</span>
                             </div>
                     ))}
@@ -32,56 +27,82 @@ import {business} from "../data/business";
     </div>
 
     <link href="https://unpkg.com/maplibre-gl@4.1.2/dist/maplibre-gl.css" rel="stylesheet"/>
-
     <script>
-        import maplibregl, {GeoJSONSourceSpecification} from 'maplibre-gl';
+        import maplibregl, {GeoJSONSourceSpecification, LayerSpecification} from 'maplibre-gl';
 
         const map = new maplibregl.Map({
             container: 'map',
             style: 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json',
             center: [-4.5612, 36.6641],
-            zoom:9.5
+            zoom: 9.5
         });
-
-        // Zona de servicio ajustada a los municipios
-        const zonaServicio = {
-            type: 'Feature',
-            geometry: {
-                type: 'Polygon',
-                coordinates: [
-                    []
-                ]
-            }
-        };
 
         map.on('load', () => {
-            map.addSource('zona-servicio', {
+            if (map.getLayer('water')) {
+                map.setPaintProperty('water', 'fill-color', '#e8e8e8');
+                map.setPaintProperty('water', 'fill-opacity', 1);
+            }
+
+            const heatZones = {
+                type: 'FeatureCollection',
+                features: [
+                    {type: 'Feature', geometry: {type: 'Point', coordinates: [-4.4214, 36.7213]}, properties: {intensity: 1}},
+                    {type: 'Feature', geometry: {type: 'Point', coordinates: [-4.4999, 36.6242]}, properties: {intensity: 0.8}},
+                    {type: 'Feature', geometry: {type: 'Point', coordinates: [-4.6243, 36.5441]}, properties: {intensity: 0.7}},
+                    {type: 'Feature', geometry: {type: 'Point', coordinates: [-4.5612, 36.6641]}, properties: {intensity: 1}},
+                    {type: 'Feature', geometry: {type: 'Point', coordinates: [-4.6332, 36.7103]}, properties: {intensity: 0.6}},
+                    {type: 'Feature', geometry: {type: 'Point', coordinates: [-4.4985, 36.6667]}, properties: {intensity: 0.7}},
+                ]
+            };
+
+            map.addSource('heat-zones', {
                 type: 'geojson',
-                data: zonaServicio
+                data: heatZones
             } as GeoJSONSourceSpecification);
 
-            new maplibregl.Marker({color: '#D4AF37'})
-                .setLngLat([-4.5612, 36.6641])
-                .setPopup(new maplibregl.Popup().setHTML('<strong>Lavandería La Torre</strong>'))
-                .addTo(map);
+            map.addLayer({
+                id: 'heat-layer',
+                type: 'circle',
+                source: 'heat-zones',
+                paint: {
+                    'circle-radius': ['interpolate', ['linear'], ['zoom'], 8, 80, 12, 200],
+                    'circle-color': '#0780FE',
+                    'circle-opacity': ['*', 0.25, ['get', 'intensity']],
+                    'circle-blur': 1
+                }
+            } as LayerSpecification, 'water');
 
-// Markers municipios
-            const municipios = [
-                {nombre: 'Málaga', coords: [-4.4214, 36.7213]},
-                {nombre: 'Torremolinos', coords: [-4.4999, 36.6242]},
-                {nombre: 'Fuengirola', coords: [-4.6243, 36.5441]},
-                {nombre: 'Cártama', coords: [-4.6332, 36.7103]},
-                {nombre: 'Churriana', coords: [-4.4985, 36.6667]},
-                {nombre: 'Benalmádena', coords: [-4.5169, 36.5987]},
-            ];
+            map.addLayer({
+                id: 'heat-layer-core',
+                type: 'circle',
+                source: 'heat-zones',
+                paint: {
+                    'circle-radius': ['interpolate', ['linear'], ['zoom'], 8, 30, 12, 80],
+                    'circle-color': '#0780FE',
+                    'circle-opacity': ['*', 0.4, ['get', 'intensity']],
+                    'circle-blur': 0.8
+                }
+            } as LayerSpecification, 'water');
+            let pulse = 0;
+            const animateHeat = () => {
+                pulse = (pulse + 0.02) % (Math.PI * 2);
+                const scale = 1 + Math.sin(pulse) * 0.15; // oscila entre 0.85 y 1.15
+                const opacity = 0.25 + Math.sin(pulse) * 0.08; // oscila entre 0.17 y 0.33
 
-            municipios.forEach(muni => {
-                new maplibregl.Marker({color: '#0780FE'})
-                    .setLngLat(muni.coords)
-                    .setPopup(new maplibregl.Popup().setHTML(`<strong>${muni.nombre}</strong>`))
-                    .addTo(map);
-            });
+                map.setPaintProperty('heat-layer', 'circle-radius',
+                    ['interpolate', ['linear'], ['zoom'], 8, 80 * scale, 12, 200 * scale]
+                );
+                map.setPaintProperty('heat-layer', 'circle-opacity',
+                    ['*', opacity, ['get', 'intensity']]
+                );
+
+                requestAnimationFrame(animateHeat);
+            };
+
+            animateHeat();
         });
+
+
     </script>
 </section>
 

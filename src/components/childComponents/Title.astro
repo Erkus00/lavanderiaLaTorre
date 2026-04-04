@@ -1,0 +1,74 @@
+---
+interface Props {
+    text: string;
+    id?: string;
+}
+
+const {text, id} = Astro.props;
+---
+
+<div class="mb-12 title-container">
+    <div class="flex items-center justify-center gap-3 mb-8">
+        <div class="flex items-center gap-1">
+            <span class="bubble bubble-left w-2 h-2 mb-4 rounded-full bg-primary/60"></span>
+            <span class="bubble bubble-left w-2 h-2 mb-4 rounded-full bg-primary/60"></span>
+            <span class="bubble bubble-left w-2 h-2 mb-4 rounded-full bg-primary/60"></span>
+
+        </div>
+        <h2
+                id={id}
+                class="title-text text-center font-stencil text-3xl md:text-4xl text-latorre-text mb-4 ms-5 me-5"
+        >
+            {text}
+        </h2>
+        <div class="flex items-center gap-1">
+            <span class="bubble bubble-right w-2 h-2 mb-4 rounded-full bg-primary"></span>
+            <span class="bubble bubble-right w-2 h-2 mb-4 rounded-full bg-primary/60"></span>
+            <span class="bubble bubble-right w-2 h-2 mb-4 rounded-full bg-primary/40"></span>
+        </div>
+    </div>
+</div>
+<script>
+    import {gsap} from "gsap/dist/gsap";
+
+    const colors = [
+        "rgba(7, 128, 254, 0.6)",
+        "rgba(7, 128, 254, 1)"
+    ];
+
+    document.querySelectorAll('.title-container').forEach((container) => {
+        const bubblesLeft = container.querySelectorAll(".bubble-left") as NodeListOf<HTMLElement>;
+        const bubblesRight = container.querySelectorAll(".bubble-right") as NodeListOf<HTMLElement>;
+
+        function rotateColors() {
+            const tl = gsap.timeline({repeat: -1});
+
+            // noinspection TypeScriptValidateJSTypes
+            tl.to(bubblesLeft[2], {backgroundColor: colors[1], duration: 2}, 0)
+                .to(bubblesLeft[1], {backgroundColor: colors[0], duration: 2}, 0)
+                .to(bubblesLeft[0], {backgroundColor: colors[0], duration: 2}, 0)
+                .to(bubblesRight[2], {backgroundColor: colors[0], duration: 2}, 0)
+                .to(bubblesRight[1], {backgroundColor: colors[0], duration: 2}, 0)
+                .to(bubblesRight[0], {backgroundColor: colors[1], duration: 2}, 0);
+
+            // noinspection TypeScriptValidateJSTypes
+            tl.to(bubblesLeft[2], {backgroundColor: colors[0], duration: 2}, 1.66)
+                .to(bubblesLeft[1], {backgroundColor: colors[1], duration: 2}, 1.66)
+                .to(bubblesLeft[0], {backgroundColor: colors[0], duration: 2}, 1.66)
+                .to(bubblesRight[2], {backgroundColor: colors[0], duration: 2}, 1.66)
+                .to(bubblesRight[1], {backgroundColor: colors[1], duration: 2}, 1.66)
+                .to(bubblesRight[0], {backgroundColor: colors[0], duration: 2}, 1.66);
+
+            // noinspection TypeScriptValidateJSTypes
+            tl.to(bubblesLeft[2], {backgroundColor: colors[0], duration: 2}, 3.33)
+                .to(bubblesLeft[1], {backgroundColor: colors[0], duration: 2}, 3.33)
+                .to(bubblesLeft[0], {backgroundColor: colors[1], duration: 2}, 3.33)
+                .to(bubblesRight[2], {backgroundColor: colors[1], duration: 2}, 3.33)
+                .to(bubblesRight[1], {backgroundColor: colors[0], duration: 2}, 3.33)
+                .to(bubblesRight[0], {backgroundColor: colors[0], duration: 2}, 3.33);
+        }
+
+        rotateColors();
+        setInterval(rotateColors, 5000);
+    });
+</script>

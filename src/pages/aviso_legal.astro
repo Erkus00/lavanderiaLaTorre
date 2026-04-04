@@ -1,0 +1,60 @@
+---
+import Layout from "../layouts/Layout.astro";
+import {business} from "../data/business";
+---
+
+<Layout title="Aviso Legal | Lavandería La Torre">
+    <main class="py-20 bg-latorre-background">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <h1 class="text-3xl font-bold text-latorre-primary mb-8 text-center">Aviso Legal</h1>
+
+            <div class="prose prose-lg text-latorre-text/80 space-y-6">
+                <section>
+                    <h2 class="text-xl font-semibold text-latorre-primary">Identificación del titular</h2>
+                    <ul class="list-none p-0 space-y-1">
+                        <li><strong>Titular:</strong> {business.legalName}</li>
+                        <li><strong>NIF:</strong> {business.nif}</li>
+                        <li><strong>Domicilio:</strong> {business.address.street}, {business.address.postalCode} {business.address.locality}, {business.address.region}</li>
+                        <li><strong>Email:</strong> {business.email}</li>
+                        <li><strong>Teléfono:</strong> {business.phoneDisplay}</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="text-xl font-semibold text-latorre-primary">Objeto y ámbito de aplicación</h2>
+                    <p>
+                        Este sitio web tiene como finalidad proporcionar información sobre los servicios de lavandería y tintorería a domicilio ofrecidos por {business.name}. El acceso y uso de este sitio web atribuye la condición de usuario e implica la aceptación de las presentes condiciones.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-xl font-semibold text-latorre-primary">Propiedad intelectual e industrial</h2>
+                    <p>
+                        Todos los contenidos de este sitio web, incluyendo textos, imágenes, logotipos, iconos y diseño, son propiedad de {business.legalName} o de terceros que han autorizado su uso. Queda prohibida su reproducción, distribución o modificación sin autorización expresa.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-xl font-semibold text-latorre-primary">Exclusión de responsabilidad</h2>
+                    <p>
+                        {business.legalName} no se hace responsable de los daños o perjuicios derivados del acceso o uso de este sitio web, incluyendo errores u omisiones en los contenidos, falta de disponibilidad del sitio o transmisión de virus.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-xl font-semibold text-latorre-primary">Legislación aplicable</h2>
+                    <p>
+                        El presente aviso legal se rige por la legislación española. Para cualquier controversia derivada del acceso o uso de este sitio web, las partes se someten a los juzgados y tribunales de {business.address.locality}.
+                    </p>
+                </section>
+            </div>
+
+            <a
+                    href="/"
+                    class="btn btn-outline border-latorre-primary text-latorre-primary hover:bg-latorre-base w-full mt-10"
+            >
+                Volver al inicio
+            </a>
+        </div>
+    </main>
+</Layout>

@@ -18,8 +18,6 @@
     --color-accent-content: #2C3E50;
     --color-neutral: rgba(44, 62, 80, 0.5);
     --color-neutral-content: #FFFFFF;
-    --color-base-100: #FFFFFF;
-    --color-base-200: #F5F5F5;
     --color-base-content: rgba(44, 62, 80, 0.5);
     --color-info: #0780FE;
     --color-success: #10B981;
@@ -33,12 +31,16 @@
     --color-latorre-silver: #C0C0C0;
     --color-latorre-gray-light: #E8E8E8;
     --color-latorre-text: rgba(44, 62, 80, 0.6);
-    --color-latorre-background: #F5F5F5;
+    --color-latorre-background: rgba(245, 245, 245, 0.5);
     --color-latorre-gold: #B8860B;
+    --color-transparent: rgba(255, 255, 255, 0);
 
     --font-stencil-title-lux: 'Stardos Stencil', serif;
     --font-sans-title: 'Oswald', system-ui, sans-serif;
     --font-text: sans-serif;
+
+    --breakpoint-laptop: 85rem;
+    --breakpoint-up-laptop: 86rem;
 }
 
 @layer base {
@@ -47,8 +49,13 @@
         @apply bg-latorre-background text-latorre-text;
     }
 
-    h1, h2, h3 {
+    h1 {
         font-family: var(--font-stencil-title-lux);
+        @apply text-latorre-text uppercase;
+    }
+
+    h2, h3 {
+        font-family: var(--font-sans-title);
         @apply text-latorre-text uppercase;
     }
 }

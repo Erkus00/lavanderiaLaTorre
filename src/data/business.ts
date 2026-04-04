@@ -1,4 +1,6 @@
 export const business = {
+    legalName: "Nombre Fiscal S.L.",
+    nif: "B12345678",
     name: "Lavandería La Torre",
     alternateName: "La Torre Lavandería y Tintorería",
     slogan: "Servicio profesional a domicilio",
@@ -21,6 +23,8 @@ export const business = {
     phoneDisplay: "XXX XXX XXX", // Para mostrar sin prefijo
     email: "info@lavanderialatorre.com",
     whatsapp: "34XXXXXXXXX", // Sin + ni espacios
+    instagram: "",
+    twitter: "",
 
     address: {
         street: "Calle Ejemplo 123",

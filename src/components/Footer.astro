@@ -5,7 +5,7 @@ const currentYear = new Date().getFullYear();
 ---
 
 <footer
-        class="text-latorre-text bg-latorre-base"
+        class="text-latorre-text bg-latorre-background"
         role="contentinfo"
 >
     <div class="container mx-auto px-4 py-12">
@@ -90,21 +90,18 @@ const currentYear = new Date().getFullYear();
 
         </div>
 
-        <div class="border-t border-latorre-silver/20 mt-10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div class="border-t border-latorre-silver/20 mt-10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4 w-full">
             <p class="text-latorre-silver text-sm">
-                © {currentYear} Lavandería La Torre. Todos los derechos reservados.
+                © {currentYear} Lavandería La Torre
             </p>
+            <a href="mailto:sellmanbsn@proton.me" class="text-latorre-silver text-sm hover:text-latorre-primary transition-colors">
+                Desarrollado por Carlos Aragón
+            </a>
             <nav class="flex gap-4 text-sm" aria-label="Enlaces legales">
-                <a
-                        href="/aviso-legal"
-                        class="text-latorre-silver hover:text-latorre-primary transition-colors"
-                >
+                <a href="/aviso_legal" class="text-latorre-silver hover:text-latorre-primary transition-colors">
                     Aviso legal
                 </a>
-                <a
-                        href="/privacidad"
-                        class="text-latorre-silver hover:text-latorre-primary transition-colors"
-                >
+                <a href="/privacidad" class="text-latorre-silver hover:text-latorre-primary transition-colors">
                     Privacidad
                 </a>
             </nav>

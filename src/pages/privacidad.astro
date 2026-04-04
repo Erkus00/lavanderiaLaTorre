@@ -1,0 +1,76 @@
+---
+import Layout from "../layouts/Layout.astro";
+import {business} from "../data/business";
+---
+
+<Layout title="Política de Privacidad | Lavandería La Torre">
+    <main class="py-20 bg-latorre-background">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <h1 class="text-3xl font-bold text-latorre-primary mb-8 text-center">Política de Privacidad</h1>
+
+            <div class="prose prose-lg text-latorre-text/80 space-y-6">
+                <section>
+                    <h2 class="text-xl font-semibold text-latorre-primary">Responsable del tratamiento</h2>
+                    <ul class="list-none p-0 space-y-1">
+                        <li><strong>Titular:</strong> {business.legalName}</li>
+                        <li><strong>NIF:</strong> {business.nif}</li>
+                        <li><strong>Domicilio:</strong> {business.address.street}, {business.address.postalCode} {business.address.locality}, {business.address.region}</li>
+                        <li><strong>Email:</strong> {business.email}</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="text-xl font-semibold text-latorre-primary">Datos que recopilamos</h2>
+                    <p>
+                        Este sitio web <strong>no almacena datos personales</strong>. El formulario de contacto envía la información directamente a nuestro email mediante Web3Forms, sin almacenarla en
+                        ninguna base de datos ni servidor propio.
+                    </p>
+                    <p>Los datos enviados a través del formulario son:</p>
+                    <ul>
+                        <li>Nombre</li>
+                        <li>Email</li>
+                        <li>Teléfono (opcional)</li>
+                        <li>Mensaje</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="text-xl font-semibold text-latorre-primary">Finalidad del tratamiento</h2>
+                    <p>
+                        Los datos proporcionados a través del formulario de contacto se utilizan exclusivamente para responder a tu consulta y, en su caso, gestionar la prestación de nuestros
+                        servicios.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-xl font-semibold text-latorre-primary">Cookies</h2>
+                    <p>
+                        Este sitio web <strong>no utiliza cookies</strong> propias ni de terceros con fines analíticos o publicitarios.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-xl font-semibold text-latorre-primary">Derechos del usuario</h2>
+                    <p>
+                        Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición y portabilidad enviando un email a <a href={`mailto:${business.email}`}
+                                                                                                                                         class="text-latorre-primary hover:underline">{business.email}</a>.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-xl font-semibold text-latorre-primary">Actualizaciones</h2>
+                    <p>
+                        Esta política puede actualizarse en cualquier momento. Recomendamos revisarla periódicamente.
+                    </p>
+                </section>
+            </div>
+
+            <a
+                    href="/"
+                    class="btn btn-outline border-latorre-primary text-latorre-primary hover:bg-latorre-base w-full mt-10"
+            >
+                Volver al inicio
+            </a>
+        </div>
+    </main>
+</Layout>
