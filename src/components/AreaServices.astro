@@ -3,13 +3,13 @@ import {business} from "../data/business";
 import Title from "./childComponents/Title.astro";
 ---
 
-<section id="zonas" class="py-10 bg-latorre-background">
+<section id="zonas" class="py-10 bg-latorre-background px-[5%]">
     <div class="container mx-auto px-4">
 
         <Title text=" Zonas de Servicio" id="cobertura-titulo"/>
 
         <div class="grid lg:grid-cols-3 gap-8">
-            <div class="space-y-3 h-full flex items-center">
+            <div class="space-y-3">
                 <div class="grid grid-cols-2 gap-3">
                     {business.areaServed.map((zona) => (
                             <div class="flex items-center gap-3 p-3 rounded-lg">
@@ -28,16 +28,25 @@ import Title from "./childComponents/Title.astro";
 
     <link href="https://unpkg.com/maplibre-gl@4.1.2/dist/maplibre-gl.css" rel="stylesheet"/>
     <script>
-        import maplibregl, {GeoJSONSourceSpecification, LayerSpecification} from 'maplibre-gl';
+        import maplibregl, {type GeoJSONSourceSpecification, type LayerSpecification} from 'maplibre-gl';
 
         const map = new maplibregl.Map({
             container: 'map',
             style: 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json',
             center: [-4.5612, 36.6641],
-            zoom: 9.5
+            zoom: 9.5,
+            attributionControl: false
         });
 
+        map.addControl(new maplibregl.AttributionControl({
+            compact: true
+        }), 'bottom-right');
+
         map.on('load', () => {
+
+            const attrib = document.querySelector('#map .maplibregl-ctrl-attrib') as HTMLElement;
+            attrib?.classList.remove('maplibregl-compact-show');
+
             if (map.getLayer('water')) {
                 map.setPaintProperty('water', 'fill-color', '#e8e8e8');
                 map.setPaintProperty('water', 'fill-opacity', 1);

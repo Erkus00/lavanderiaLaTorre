@@ -1,51 +1,46 @@
 ---
-import {business} from "../../data/business";
 interface Props {
     name: string;
     description: string;
-    images: string[];
-    featured?: boolean;
+    images: readonly string[];
 }
 
-const {name, description, images, featured = false} = Astro.props;
+const {name, description, images} = Astro.props;
 ---
 
-<div class="card w-full bg-base-100 border-r-1 border-primary border-b-2 border-l-1  lg:max-w-[75%] ml-auto mr-auto mb-10">
+<div class="card w-full bg-base-100 border-r-1 border-primary border-b-2 border-l-1  lg:max-w-[85%] ml-auto mr-auto mb-10">
     <div class="card-body p-5 2xl:p-8">
         <h2 class="text-sans-title text-center text-lg md:text-xl 2xl:text-2xl text-primary font-bold w-full mb-5">{name}</h2>
         <div class="w-full hidden xl:grid">
             <figure class="hover-gallery rounded-box shadow-sm">
-                <img class=" laptop:h-75 2xl:h-100 " src="https://img.daisyui.com/images/stock/daisyui-hat-1.webp" alt="Hat 1"/>
-                <img class=" laptop:h-75 2xl:h-100" src="https://img.daisyui.com/images/stock/daisyui-hat-2.webp" alt="Hat 2"/>
-                <img class=" laptop:h-75 2xl:h-100" src="https://img.daisyui.com/images/stock/daisyui-hat-3.webp" alt="Hat 3"/>
-                <img class=" laptop:h-75 2xl:h-100" src="https://img.daisyui.com/images/stock/daisyui-hat-4.webp" alt="Hat 4"/>
+                {images.map((img, i) => (
+                        <img
+                                class="laptop:h-60 2xl:h-72"
+                                src={img}
+                                alt={`${name} - imagen ${i + 1}`}
+                                data-astro-skip
+                                loading="lazy"
+                                width="400"
+                                height="300"
+                        />
+                ))}
             </figure>
         </div>
 
         <div class="carousel carousel-center rounded-box p-2 xl:hidden gap-4">
-            <div class="carousel-item w-full justify-center">
-                <img
-                        src="https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.webp"
-                        class="rounded-box h-100 object-cover" alt="https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.webp"/>
-            </div>
-
-            <div class="carousel-item w-full justify-center">
-                <img
-                        src="https://img.daisyui.com/images/stock/daisyui-hat-4.webp"
-                        class="rounded-box h-100  object-cover" alt="https://img.daisyui.com/images/stock/daisyui-hat-4.webp"/>
-            </div>
-
-            <div class="carousel-item w-full justify-center">
-                <img
-                        src="https://img.daisyui.com/images/stock/daisyui-hat-3.webp"
-                        class="rounded-box h-100  object-cover" alt="https://img.daisyui.com/images/stock/daisyui-hat-3.webp"/>
-            </div>
-
-            <div class="carousel-item w-full justify-center">
-                <img
-                        src="https://img.daisyui.com/images/stock/daisyui-hat-4.webp"
-                        class="rounded-box h-100  object-cover" alt="https://img.daisyui.com/images/stock/daisyui-hat-4.webp"/>
-            </div>
+            {images.map((img, i) => (
+                    <div class="carousel-item w-full justify-center">
+                        <img
+                                src={img}
+                                class="rounded-box h-72 object-cover"
+                                alt={`${name} - imagen ${i + 1}`}
+                                data-astro-skip
+                                loading="lazy"
+                                width="400"
+                                height="300"
+                        />
+                    </div>
+            ))}
 
         </div>
 

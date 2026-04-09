@@ -3,7 +3,7 @@ import {business} from "../data/business";
 import Title from "./childComponents/Title.astro";
 ---
 
-<section id="contacto" class="py-10 bg-latorre-background">
+<section id="contacto" class="py-10 bg-latorre-background px-[5%]">
     <div class="container mx-auto px-4">
 
         <Title text="Contáctanos" id="contacto-titulo"/>
@@ -13,10 +13,8 @@ import Title from "./childComponents/Title.astro";
                 <div class=" w-full md:mx-0 md:ms-5">
                     <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" class="p-4 bg-transparent">
 
-                        <!-- Access Key (reemplaza con la tuya) -->
                         <input type="hidden" name="access_key" value="TU_ACCESS_KEY"/>
 
-                        <!-- Configuración -->
                         <input type="hidden" name="subject" value="Nueva consulta - Lavandería La Torre"/>
                         <input type="hidden" name="from_name" value="Lavandería La Torre Web"/>
 
@@ -28,6 +26,7 @@ import Title from "./childComponents/Title.astro";
                         <fieldset class="fieldset form-control text-neutral">
                             <legend class="fieldset-legend">¿Cuál es su email?</legend>
                             <label class="input validator input-primary text-neutral">
+                                <span class="sr-only">Email</span>
                                 <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor">
                                         <rect width="20" height="16" x="2" y="4" rx="2"></rect>

@@ -20,9 +20,9 @@ export const business = {
     ogImage: "/images/og-image.jpg",
 
     phone: "+34 XXX XXX XXX",
-    phoneDisplay: "XXX XXX XXX", // Para mostrar sin prefijo
+    phoneDisplay: "XXX XXX XXX",
     email: "info@lavanderialatorre.com",
-    whatsapp: "34XXXXXXXXX", // Sin + ni espacios
+    whatsapp: "34XXXXXXXXX",
     instagram: "",
     twitter: "",
 
@@ -67,55 +67,49 @@ export const business = {
         {
             id: "lavanderia-industrial",
             name: "Lavandería Industrial",
-            description: "Servicio especializado para apartamentos turísticos, hoteles, restaurantes y aviación privada. Gran capacidad y máxima eficiencia.",
-            icon: "industry",
+            description: "Servicio de lavandería industrial para apartamentos turísticos, hoteles, restaurantes y aviación privada en Málaga. Máxima capacidad y eficiencia para negocios con alta rotación de textiles. Recogida y entrega a domicilio en toda la Costa del Sol.",
             images: [
-                "/images/servicios/lavanderia-1.jpg",
-                "/images/servicios/lavanderia-2.jpg",
-                "/images/servicios/lavanderia-3.jpg",
-                "/images/servicios/lavanderia-4.jpg",
+                "/images/lav_ind_1.webp",
+                "/images/lav_ind_2.webp",
+                "/images/lav_ind_3.webp",
+                "/images/lav_ind_4.webp",
             ],
             featured: false,
         },
         {
             id: "tintoreria",
             name: "Tintorería",
-            description: "Limpieza profesional de trajes, pieles, alfombras y moquetas. Tratamiento especializado para prendas delicadas y de lujo.",
-            icon: "sparkles",
+            description: "Limpieza profesional de trajes, abrigos, pieles, alfombras y moquetas en Málaga. Tratamiento especializado para prendas delicadas y de lujo: edredones, cortinas y textiles que requieren cuidado experto. Servicio a domicilio con resultados impecables.",
             images: [
-                "/images/servicios/tintoreria-1.jpg",
-                "/images/servicios/tintoreria-2.jpg",
-                "/images/servicios/tintoreria-3.jpg",
-                "/images/servicios/tintoreria-4.jpg",
+                "/images/tintoreria_1.webp",
+                "/images/tintoreria_2.webp",
+                "/images/tintoreria_3.webp",
+                "/images/tintoreria_4.webp",
             ],
             featured: false,
         },
         {
             id: "renting-textil",
             name: "Renting Textil",
-            description: "Alquiler de ropa de cama, toallas y mantelería. Ideal para apartamentos turísticos y negocios sin inversión inicial.",
-            icon: "refresh",
+            description: "Alquiler de ropa de cama, toallas y mantelería para apartamentos turísticos y hostelería en la Costa del Sol. Sin inversión inicial, sin preocupaciones. Reposición y lavado incluidos para mantener tu negocio siempre impecable.",
             images: [
-                "/images/servicios/renting-1.jpg",
-                "/images/servicios/renting-2.jpg",
-                "/images/servicios/renting-3.jpg",
-                "/images/servicios/renting-4.jpg",
+                "/images/renting_textil_1.webp",
+                "/images/renting_textil_2.webp",
+                "/images/renting_textil_3.webp",
+                "/images/renting_textil_4.webp",
             ],
             featured: false,
         },
         {
             id: "express-24h",
             name: "Servicio Express 24/7",
-            description: "Recogida y entrega en 3-4 horas. Disponible todos los días.",
-            icon: "clock",
+            description: "Lavandería urgente con recogida y entrega en 3-4 horas, disponible todos los días del año en Málaga. Ideal para aviación privada, emergencias y clientes que necesitan resultados inmediatos sin esperas.",
             images: [
-                "/images/servicios/express-1.jpg",
-                "/images/servicios/express-2.jpg",
-                "/images/servicios/express-3.jpg",
-                "/images/servicios/express-4.jpg",
+                "/images/express_1.webp",
+                "/images/express_2.webp",
             ],
             featured: true,
-        },
+        }
     ],
 
     priceRange: "€€",
@@ -128,7 +122,6 @@ export const business = {
         google: "https://g.page/lavanderialatorre",
     },
 
-    // Valoraciones (actualizar manualmente o conectar a API)
     rating: {
         value: 4.8,
         count: 127,

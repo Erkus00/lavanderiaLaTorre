@@ -4,6 +4,8 @@ const navLinks = [
     {name: 'Servicios', href: '#servicios'},
     {name: 'Cobertura', href: '#zonas'}
 ];
+
+import {business} from "../data/business";
 ---
 
 <header
@@ -20,9 +22,12 @@ const navLinks = [
             <div class="navbar-start">
                 <a
                         href="/"
-                        class="font-stencil text-2xl text-latorre-primary animate-fade-in-left animate-duration-500"
+                        class="font-stencil text-2xl text-latorre-primary animate-fade-in-left animate-duration-500 flex items-center gap-3"
                         aria-label="Lavandería La Torre - Ir al inicio"
                 >
+                    <div class="w-10 h-10 rounded-full bg-white overflow-hidden">
+                        <img src={business.logo} alt="" class="w-full h-full object-cover" data-astro-skip loading="lazy" width="400" height="300"/>
+                    </div>
                     <span>LA TORRE</span>
                 </a>
             </div>
