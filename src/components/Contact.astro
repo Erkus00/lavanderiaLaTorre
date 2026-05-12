@@ -13,7 +13,7 @@ import Title from "./childComponents/Title.astro";
                 <div class=" w-full md:mx-0 md:ms-5">
                     <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" class="p-4 bg-transparent">
 
-                        <input type="hidden" name="access_key" value="TU_ACCESS_KEY"/>
+                        <input type="hidden" name="access_key" value="ea41b90e-2104-4009-a5ca-f32e38d5fd73"/>
 
                         <input type="hidden" name="subject" value="Nueva consulta - Lavandería La Torre"/>
                         <input type="hidden" name="from_name" value="Lavandería La Torre Web"/>
@@ -110,6 +110,45 @@ import Title from "./childComponents/Title.astro";
         }
 
         [nombre, email, mensaje].forEach(el => el.addEventListener('input', validar));
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            btn.disabled = true;
+            btn.textContent = 'Enviando...';
+
+            try {
+                const res = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: new FormData(form),
+                } as any);
+                const data = await res.json();
+
+                if (data.success) {
+                    form.reset();
+                    btn.textContent = 'Enviado correctamente';
+                    btn.classList.remove('btn-primary');
+                    btn.classList.add('btn-success');
+                    setTimeout(() => {
+                        btn.textContent = 'Enviar';
+                        btn.classList.remove('btn-success');
+                        btn.classList.add('btn-primary');
+                        btn.disabled = true;
+                    }, 4000);
+                } else {
+                    throw new Error('Error en el envío');
+                }
+            } catch {
+                btn.textContent = '✗ Error al enviar';
+                btn.classList.remove('btn-primary');
+                btn.classList.add('btn-error');
+                setTimeout(() => {
+                    btn.textContent = 'Enviar';
+                    btn.classList.remove('btn-error');
+                    btn.classList.add('btn-primary');
+                    validar();
+                }, 4000);
+            }
+        });
     </script>
 </section>
 

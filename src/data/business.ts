@@ -39,13 +39,13 @@ export const business = {
     },
 
     areaServed: [
-        "Málaga",
-        "Torremolinos",
-        "Fuengirola",
-        "Alhaurín de la Torre",
-        "Cártama",
-        "Churriana",
-    ],
+        { name: "Málaga" },
+        { name: "Torremolinos" },
+        { name: "Fuengirola", note: "Consultar" },
+        { name: "Alhaurín de la Torre" },
+        { name: "Cártama" },
+        { name: "Churriana" },
+    ] as const,
 
     openingHours: [
         {days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "08:00", closes: "20:00"},

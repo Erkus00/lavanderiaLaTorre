@@ -8,18 +8,20 @@ interface Props {
 const {name, description, images} = Astro.props;
 ---
 
-<div class="card w-full bg-base-100 border-r-1 border-primary border-b-2 border-l-1  lg:max-w-[85%] ml-auto mr-auto mb-10">
+<div class="card w-full bg-base-100 border-r-1 border-primary border-b-2 border-l-1  lg:max-w-[75%] ml-auto mr-auto mb-10">
     <div class="card-body p-5 2xl:p-8">
         <h2 class="text-sans-title text-center text-lg md:text-xl 2xl:text-2xl text-primary font-bold w-full mb-5">{name}</h2>
         <div class="w-full hidden xl:grid">
-            <figure class="hover-gallery rounded-box shadow-sm">
+            <figure class="auto-gallery  grid laptop:h-60 2xl:h-72 w-auto">
                 {images.map((img, i) => (
                         <img
-                                class="laptop:h-60 2xl:h-72"
+                                class="laptop:h-60 2xl:h-72 object-cover col-start-1 row-start-1 transition-opacity duration-700 w-full rounded-box shadow-sm"
+                                class:list={[i === 0 ? "opacity-100" : "opacity-0"]}
                                 src={img}
                                 alt={`${name} - imagen ${i + 1}`}
                                 data-astro-skip
-                                loading="lazy"
+                                loading={i === 0 ? "eager" : "lazy"}
+                                decoding="async"
                                 width="400"
                                 height="300"
                         />
@@ -34,7 +36,8 @@ const {name, description, images} = Astro.props;
                                 class="rounded-box h-72 object-cover"
                                 alt={`${name} - imagen ${i + 1}`}
                                 data-astro-skip
-                                loading="lazy"
+                                loading={i === 0 ? "eager" : "lazy"}
+                                decoding="async"
                                 width="400"
                                 height="300"
                         />
@@ -51,3 +54,18 @@ const {name, description, images} = Astro.props;
         </div>
     </div>
 </div>
+
+<script>
+    document.querySelectorAll('.auto-gallery').forEach((gallery, index) => {
+        const imgs = gallery.querySelectorAll('img');
+        if (imgs.length < 2) return;
+        let current = 0;
+        setTimeout(() => {
+            setInterval(() => {
+                imgs[current].classList.replace('opacity-100', 'opacity-0');
+                current = (current + 1) % imgs.length;
+                imgs[current].classList.replace('opacity-0', 'opacity-100');
+            }, 5000);
+        }, index * 2500);
+    });
+</script>
