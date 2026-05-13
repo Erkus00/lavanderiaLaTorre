@@ -14,7 +14,10 @@ import Title from "./childComponents/Title.astro";
                     {business.areaServed.map((zona) => (
                             <div class="flex items-center gap-3 p-3 rounded-lg">
                                 <div class="w-3 h-3 rounded-full bg-gradient-to-br from-primary to-primary/60"></div>
-                                <span>{zona}</span>
+                                <span>
+                                    {zona.name}
+                                    {zona.note && <span class="text-xs text-base-content/50 ml-1">{zona.note}</span>}
+                                </span>
                             </div>
                     ))}
                 </div>
