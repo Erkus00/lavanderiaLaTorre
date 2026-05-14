@@ -12,7 +12,7 @@ import Title from "./childComponents/Title.astro";
     <div class="container mx-auto px-4">
         <Title text="Nuestros servicios" id="servicios-titulo"/>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:gap-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 mx-auto">
             {business.services.map((servicio) => (
                     <ServiceCard
                             name={servicio.name}

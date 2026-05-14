@@ -8,7 +8,8 @@ interface Props {
 const {name, description, images} = Astro.props;
 ---
 
-<div class="card w-full bg-base-100 border-r-1 border-primary border-b-2 border-l-1  lg:max-w-[75%] ml-auto mr-auto mb-10">
+<!--<div class="card w-full bg-base-100 border-r-1 border-primary border-b-2 border-l-1  lg:max-w-[75%] ml-auto mr-auto mb-10">-->
+<div class="card w-full bg-background  border-primary border-b-2">
     <div class="card-body p-5 2xl:p-8">
         <h2 class="text-sans-title text-center text-lg md:text-xl 2xl:text-2xl text-primary font-bold w-full mb-5">{name}</h2>
         <div class="w-full hidden xl:grid">
@@ -43,7 +44,6 @@ const {name, description, images} = Astro.props;
                         />
                     </div>
             ))}
-
         </div>
 
         <div class="mt-2">

@@ -8,67 +8,63 @@ const {text, id} = Astro.props;
 ---
 
 <div class="mb-12 title-container">
-    <div class="flex items-center justify-center gap-3 mb-8">
-        <div class="flex items-center gap-1">
-            <span class="bubble bubble-left w-2 h-2 mb-4 rounded-full bg-primary/60"></span>
-            <span class="bubble bubble-left w-2 h-2 mb-4 rounded-full bg-primary/60"></span>
-            <span class="bubble bubble-left w-2 h-2 mb-4 rounded-full bg-primary/60"></span>
-
-        </div>
+    <div class="flex items-center justify-center gap-3">
+      <span class="shine-line flex-1 h-1 bg-latorre-primary overflow-hidden relative rounded-l-full">
+            <span class="shine-sweep sweep-left absolute inset-0"></span>
+      </span>
         <h2
                 id={id}
-                class="title-text text-center font-stencil text-3xl md:text-4xl text-latorre-text mb-4 ms-5 me-5"
+                class="title-text text-center font-stencil text-3xl md:text-4xl text-latorre-text ms-5 me-5 shrink-0"
         >
             {text}
         </h2>
-        <div class="flex items-center gap-1">
-            <span class="bubble bubble-right w-2 h-2 mb-4 rounded-full bg-primary"></span>
-            <span class="bubble bubble-right w-2 h-2 mb-4 rounded-full bg-primary/60"></span>
-            <span class="bubble bubble-right w-2 h-2 mb-4 rounded-full bg-primary/40"></span>
-        </div>
+        <span class="shine-line flex-1 h-1 bg-latorre-primary overflow-hidden relative rounded-r-full">
+            <span class="shine-sweep sweep-right absolute inset-0"></span>
+        </span>
     </div>
 </div>
+
+<style>
+    .shine-sweep {
+        background: linear-gradient(
+                90deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.6) 40%,
+                rgba(255, 255, 255, 0.9) 50%,
+                rgba(255, 255, 255, 0.6) 60%,
+                transparent 100%
+        );
+    }
+
+    .sweep-left {
+        transform: translateX(-100%);
+    }
+
+    .sweep-right {
+        transform: translateX(100%);
+    }
+</style>
 <script>
     import {gsap} from "gsap/dist/gsap";
 
-    const colors = [
-        "rgba(7, 128, 254, 0.6)",
-        "rgba(7, 128, 254, 1)"
-    ];
-
     document.querySelectorAll('.title-container').forEach((container) => {
-        const bubblesLeft = container.querySelectorAll(".bubble-left") as NodeListOf<HTMLElement>;
-        const bubblesRight = container.querySelectorAll(".bubble-right") as NodeListOf<HTMLElement>;
+        const left = container.querySelector(".sweep-left") as HTMLElement;
+        const right = container.querySelector(".sweep-right") as HTMLElement;
 
-        function rotateColors() {
-            const tl = gsap.timeline({repeat: -1});
+        gsap.to(left, {
+            x: "200%",
+            duration: 3.5,
+            ease: "power1.inOut",
+            repeat: -1,
+            repeatDelay: 1
+        });
 
-            // noinspection TypeScriptValidateJSTypes
-            tl.to(bubblesLeft[2], {backgroundColor: colors[1], duration: 2}, 0)
-                .to(bubblesLeft[1], {backgroundColor: colors[0], duration: 2}, 0)
-                .to(bubblesLeft[0], {backgroundColor: colors[0], duration: 2}, 0)
-                .to(bubblesRight[2], {backgroundColor: colors[0], duration: 2}, 0)
-                .to(bubblesRight[1], {backgroundColor: colors[0], duration: 2}, 0)
-                .to(bubblesRight[0], {backgroundColor: colors[1], duration: 2}, 0);
-
-            // noinspection TypeScriptValidateJSTypes
-            tl.to(bubblesLeft[2], {backgroundColor: colors[0], duration: 2}, 1.66)
-                .to(bubblesLeft[1], {backgroundColor: colors[1], duration: 2}, 1.66)
-                .to(bubblesLeft[0], {backgroundColor: colors[0], duration: 2}, 1.66)
-                .to(bubblesRight[2], {backgroundColor: colors[0], duration: 2}, 1.66)
-                .to(bubblesRight[1], {backgroundColor: colors[1], duration: 2}, 1.66)
-                .to(bubblesRight[0], {backgroundColor: colors[0], duration: 2}, 1.66);
-
-            // noinspection TypeScriptValidateJSTypes
-            tl.to(bubblesLeft[2], {backgroundColor: colors[0], duration: 2}, 3.33)
-                .to(bubblesLeft[1], {backgroundColor: colors[0], duration: 2}, 3.33)
-                .to(bubblesLeft[0], {backgroundColor: colors[1], duration: 2}, 3.33)
-                .to(bubblesRight[2], {backgroundColor: colors[1], duration: 2}, 3.33)
-                .to(bubblesRight[1], {backgroundColor: colors[0], duration: 2}, 3.33)
-                .to(bubblesRight[0], {backgroundColor: colors[0], duration: 2}, 3.33);
-        }
-
-        rotateColors();
-        setInterval(rotateColors, 5000);
+        gsap.to(right, {
+            x: "-200%",
+            duration: 3.5,
+            ease: "power1.inOut",
+            repeat: -1,
+            repeatDelay: 1
+        });
     });
 </script>
